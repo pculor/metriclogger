@@ -26,13 +26,13 @@ The following instructions will install the project on your local machine
 1. Install [**Node JS**](https://nodejs.org/en/).
 2. Install [**InfluxDB**](https://docs.influxdata.com/) .
 3. Clone the [**repository here**]()
-4. [**cd**] into the root directory of the project folder.
-5. [**cd**] into client folder run `npm Install`.
+4. [**cd**] into the root directory of the project folder `metriclogger` and run `npm install`.
+5. [**cd**] into `client` folder run `npm Install`.
 6. Run `npm install` on the terminal to install Dependencies and Dev-Dependencies
 
 ### How to run
 
-1. Run `npm run start:dev` to load environment variables.
+1. setup environment variables using `.env.example` file.
 2. Now open terminal to run your database migrations and run the application
 
 ```
