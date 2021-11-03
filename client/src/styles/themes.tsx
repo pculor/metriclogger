@@ -23,6 +23,23 @@ export const theme ={
         mediumSpace3 : '2.5rem',
         largeSpace : '7rem',
         extraLargeSpace : '10rem'
-    }
+    },
     
+    fonts: {
+                heading1: '40px',
+        heading2: '32px',
+        heading3: '24px',
+        heading4: '16px',
+        heading5: '12px',
+
+        bodyHero: '20px',
+        body1: '16px',
+        body2: '12px',
+
+        buttonText: '16px'
+    },
+
+    //====== FONT FAMILY ======//
+    fontFamily: { source_sans_pro: 'Source Sans Pro, sans-serif' }
+
 }

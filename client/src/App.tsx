@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
-import Chart from './components/Chart';
+import Timeline from './components/Chart';
 import Form from './components/Form';
 import Nav from './components/Nav';
 
@@ -12,7 +12,7 @@ function App() {
       <Nav/>
       <Switch>
         <Route exact path="/" component={Form} />
-        <Route exact path="/chart" component={Chart} />
+        <Route exact path="/chart" component={Timeline} />
       </Switch>
     </div>
     </Router>

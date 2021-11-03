@@ -1,37 +1,65 @@
 import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
 import { axios } from '../../utils/axios';
+import Chart from "./Chart";
+import IntervalDropDown from "./IntervalDropDown";
 
 
-const Chart = (props:any) => {
+const Timeline = (props:any) => {
+    const [records, setRecords] = useState([]);
+    const [interval, setInterval] = useState("");
+
+    const getMetrics = (interval: string) => {
+        if(interval){
+            axios.get(`metrics?interval=${interval}?avg=5?start=1`)
+            .then((res)=>{
+                const { data: {
+                    body
+                }} = res;
+                console.log(body, '<<<=== chart');
+                setRecords(body);
+            }); 
+        } else {
+            axios.get(`metrics?interval=${interval}?avg=5?start=1`)
+            .then((res)=>{
+                const { data: {
+                    body
+                }} = res;
+                console.log(body, '<<<=== chart');
+                setRecords(body);
+            });
+        }
+        
+    }
+
+    const selectInterval =(interval: string) =>{
+        setInterval(interval);
+    }
+
+    useEffect(()=>getMetrics(interval),[interval])
+
+    if (!records.length) {
+        return (
+          <div>
+            <NoFeedback>No Metrics for selected Timeline</NoFeedback>
+          </div>
+        );
+      }
     return (
         <Container className="table">
-
-            <InputWrapper>
-            <label htmlFor="metric1">Metric One</label>
-            <input type="text" />
-            </InputWrapper>
-            <InputWrapper>
-            <label htmlFor="metric1">Metric Two</label>
-            <input type="text" />
-            </InputWrapper>
-            <InputWrapper>
-            <label htmlFor="metric1">Metric Three</label>
-            <input type="text" />
-            </InputWrapper>
-            <ButtonWrapper>
-            <button>Submit</button>
-            </ButtonWrapper>
-            
+        <IntervalDropDown
+        selectInterval={selectInterval}
+         />
+        <Chart records={records}/>
         </Container>
     ) 
 }
 
-export default Chart;
+export default Timeline;
 
 const Container = styled.div`
     background-color: white;
-    max-width: 600px;
+    max-width: 1000px;
     /* max-height: 500px; */
     overflow-y: scroll;
     width: 100%;
@@ -44,25 +72,14 @@ const Container = styled.div`
     
 `;
 
-const InputWrapper = styled.div`
-display: flex;
-justify-content: space-between;
-margin-bottom: 1rem;
-input{
-    padding: 0.5rem;
-    outline: none;
-    border: thin solid grey;
-}
-`
-const ButtonWrapper = styled.div`
-display: flex;
-justify-content: center;
-margin: 3rem;
-button{
-    outline: none;
-    padding: 0.5rem 1rem;
-    background-color: #000;
-    color: #fff;
-    border: thin solid transparent;
-}
-`
+
+const NoFeedback = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: ${({theme})=> theme.fonts.bodyHero}; 
+  background-color: ${({theme})=> theme.colors.white}; 
+  width: 75%;
+  height: 30vh;
+  margin: 0 auto;
+`;

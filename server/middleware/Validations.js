@@ -53,6 +53,9 @@ class Validations {
         }),
       page: Joi.number().optional().allow('', null),
       all: Joi.boolean().valid(true, false).optional().allow('', null),
+      interval: Joi.string().valid('h', 'm', 'd').optional().allow('', null),
+      avg: Joi.number().optional().allow('', null),
+      start: Joi.number().optional().allow('', null),
     });
     req.payload = await joiValidate(payload, schema);
     return next();

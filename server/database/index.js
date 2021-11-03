@@ -78,9 +78,15 @@ class InfluxModel {
     }
 
     static async Select (req, res, next) {
-        const start = req.query.start || '6h'
         const db = new InfluxModel();
-        
+        const timeObj = {
+            min: 'm',
+            hour: 'h',
+            day: 'd'
+        }
+        const start = req.query.start || '12'
+        const interval = req.query.interval && timeObj[req.query.interval] || "";
+        const avg = req.query.avg ? req.query.avg : 3;
         /**
          * Instantiate the InfluxDB client
          * with a configuration object.
@@ -89,9 +95,12 @@ class InfluxModel {
          **/
         const queryApi = db.influxDB.getQueryApi(db.org);
 
-        const query = `from(bucket: "pccodes") 
-                        |> range(start: -${start})
-                        |> movingAverage(n: 5)
+        const query = req.query.avg ? `from(bucket: "pccodes") 
+                        |> range(start: -${start}${interval})
+                        |> movingAverage(n: ${avg})
+                        ` :
+                        `from(bucket: "pccodes") 
+                        |> range(start: -${start}${interval})
                         `;
         const tableRecords = [];
         const queryObserver = {
