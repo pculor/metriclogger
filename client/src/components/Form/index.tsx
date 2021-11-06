@@ -5,8 +5,6 @@ import styled from 'styled-components';
 import StyledInput from '../common/Input';
 
 const Form = (props: any) => {
-  const [error, setError] = useState(false);
-  const [success, setSuccess] = useState(false);
   const [metric, setMetric] = useState({
     name: '',
     value: '',
@@ -21,19 +19,12 @@ const Form = (props: any) => {
         }} = res;
         console.log(body, '<<==')
         setMetric(body)
-        setSuccess(true)
       })
       .catch(error => {
-        setError(error)
-        // return error.statusText;
+        return error.statusText;
       });
   };
 
-  if (error) {
-      toast(error || 'Something went wrong, Try Again', {
-      className: 'toast-error',})
-    setError(false);
-  }
 
   interface Imetric {
     name: string;
