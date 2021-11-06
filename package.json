@@ -7,11 +7,11 @@
     "node": "14.18.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "NODE_ENV=test jest --detectOpenHandles --coverage --runInBand --forceExit",
     "start": "node app.js",
     "dev": "NODE_ENV=development nodemon --exec node app.js",
     "client": "cd client && npm install && npm run build",
-    "dev:client": "cd client && npm start",
+    "dev:client": "cd client && npm install && npm start",
     "start:dev": "concurrently \"npm run dev\" \"npm run dev:client\"",
     "lint": "eslint --fix server/",
     "format": "npx prettier --write ."
@@ -41,6 +41,7 @@
     "joi": "^17.4.2",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
+    "react-toastify": "^8.1.0",
     "supertest": "^6.1.6",
     "winston": "^3.3.3"
   },
@@ -51,8 +52,33 @@
     ],
     "ext": "js, json"
   },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
   "jest": {
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "verbose": true,
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}",
+      "!**/node_modules/**",
+      "!**/*.test.js",
+      "!**/coverage/**",
+      "!**/serviceWorker.js",
+      "!**/index.js"
+    ],
+    "projects": [
+      {
+        "displayName": "backend",
+        "testEnvironment": "node",
+        "testMatch": ["<rootDir>/server/**/*.test.js"]
+      },
+      {
+        "displayName": "frontend",
+        "testEnvironment": "jsdom",
+        "testMatch": ["<rootDir>/client/**/*.test.tsx"],
+        "moduleFileExtensions": ["js", "json"]
+      }
+    ]
   },
   "repository": {
     "type": "git",

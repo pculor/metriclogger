@@ -36,7 +36,7 @@ const Chart = (props:any) => {
         <Container className="table">
 
             <VictoryChart
-                domainPadding={8}
+                domainPadding={10}
                 height={1000}
                 width={1000}
                 style={{ parent: { maxWidth: '90%' } }}
