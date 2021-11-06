@@ -33,7 +33,7 @@ app.use((err, req, res, next) => {
 
 app.use('/api/v1', router);
 
-// app.use(express.static(path.resolve(__dirname, '../../client/build')));
+app.use(express.static(path.resolve(__dirname, '../../client/build')));
 
 app.get('/', (req, res) => {
   handleResponse(res, OK, 'Welcome to API root', {
