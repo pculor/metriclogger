@@ -31,10 +31,14 @@ const joiValidate = (payload, schema, req, res, next) => {
 
   // TODO check for validation error
   if (error) {
-    return res.status(BAD_REQUEST).json({
-      error: error.message,
-    });
+    const errors = error.details.map((current) => current.message.replace(/['"]/g, ''));
+    // return errors[0];
+    return createError(errors[0], 400);
+    // return res.status(BAD_REQUEST).json({
+    //   error: errors[0],
+    // });
   }
+
   return value;
 };
 

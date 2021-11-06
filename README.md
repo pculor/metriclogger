@@ -36,13 +36,17 @@ The following instructions will install the project on your local machine
 2. Now open terminal to run your database migrations and run the application
 
 ```
+npm install
+```
+
+```
 npm run start:dev
 ```
 
 If all goes well, you should see something similar to this on the console:
 
 ```
-Application started on http://localhost:<port>
+Application started on http://localhost:4000
 ```
 
 ## Integration tests
@@ -50,7 +54,7 @@ Application started on http://localhost:<port>
 To test the endpoints, create a test database and run the following:
 
 ```
-npm run test
+npm test
 ```
 
 ## Technology Stack
