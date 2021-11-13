@@ -20,13 +20,6 @@ const {
 const env = process.env.NODE_ENV || 'development';
 const config = envConfigs[env];
 
-// const url = config.url;
-// const token = config.token;
-// const org = config.org;
-// const bucket = config.bucket;
-
-// const influxDB = new InfluxDB({url: config.url, token: config.token });
-
 class InfluxModel {
     url = config.url;
     token = config.token;

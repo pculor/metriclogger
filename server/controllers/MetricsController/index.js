@@ -73,17 +73,6 @@ class MetricsController {
     try {
       // TODO query Metric
       return InfluxModel.Select(req, res, next);
-      // console.log(AllMetrics);
-
-      // if (!AllMetrics) {
-      //   return next(
-      //     createError({
-      //       status: NOT_FOUND,
-      //       message: 'Metrics not found',
-      //     }),
-      //   );
-      // }
-      // return handleResponse(res, OK, 'Metric Retrieved Successful', AllMetrics);
     } catch (error) {
       return next(
         createError({

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { toast } from 'react-toastify';
 import { axios } from '../../utils/axios';
 import styled from 'styled-components';
 import StyledInput from '../common/Input';
@@ -72,12 +71,10 @@ export default Form;
 const Container = styled.div`
   background-color: white;
   max-width: 600px;
-  /* max-height: 500px; */
   overflow-y: scroll;
   width: 100%;
   padding: 30px 15rem;
   border: 1px solid #c3cfd9;
-  /* box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.1); */
   border-radius: 6px;
   margin: 0 auto;
   margin-top: 5rem;
