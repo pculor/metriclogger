@@ -88,11 +88,11 @@ class InfluxModel {
          **/
         const queryApi = db.influxDB.getQueryApi(db.org);
 
-        const query = req.query.avg ? `from(bucket: "pccodes") 
+        const query = req.query.avg ? `from(bucket: "${db.bucket}") 
                         |> range(start: -${start}${interval})
                         |> movingAverage(n: ${avg})
                         ` :
-                        `from(bucket: "pccodes") 
+                        `from(bucket: "${db.bucket}") 
                         |> range(start: -${start}${interval})
                         `;
         const tableRecords = [];
