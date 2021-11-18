@@ -99,10 +99,7 @@ class InfluxModel {
         const queryObserver = {
             next(row, tableMeta) {
                 const record = tableMeta.toObject(row);
-                // winston.info(record)
-                // winston.info(
-                // `${o._time} ${o._measurement} in ${o.location} (${o.example}): ${o._field}=${o._value}`
-                // );
+                winston.info(record)
                 tableRecords.push(record);
             },
             error(error) {
